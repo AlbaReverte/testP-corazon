@@ -38,11 +38,9 @@ const asciiHeart = [
 
 
 const animateByChart = (ms) => {
-    let i = 0;
+    let accumulator = 0;
 
-    asciiHeart.forEach((line,lineIndex)=>{
-        console.log('Linea',lineIndex);
-
+    asciiHeart.forEach((line)=>{
         line.split('').forEach((char, charIndex)=>{
             setTimeout(() => {
                 process.stdout.write(char)
@@ -50,24 +48,23 @@ const animateByChart = (ms) => {
                 if(charIndex === line.split('').length -1) {
                     process.stdout.write('\n')
                 }
-            }, i * 100)
-            i++;
+            }, accumulator * ms)
+            accumulator++;
         })
-        console.log();
         
     })
 
 }
 
 const animateByLine = (ms) => {
-    for(let i = 0; i <asciiHeart.length; i++){
-        
-          setTimeout(()=>{console.log(asciiHeart[i])}, ms * i);
-          
+    for(let index = 0; index <asciiHeart.length; index++){
+        setTimeout(()=>{
+            console.log(asciiHeart[index])
+        }, ms * index);  
     }
-
 }
-animateByLine(1000)
- //animateByChart()
+//animateByLine(1000)
+animateByChart(200)
+
 
 
